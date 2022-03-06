@@ -1,11 +1,17 @@
-//You can edit ALL of the code here
+const searchBox = document.getElementById("search-box");
+const searchCount = document.getElementById("search-count");
+
+
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes); 
+  //_____________________________event listener________
+  searchBox.addEventListener("keyup", onSearchKeyUp);
 }
 
 function makePageForEpisodes(episodeList) {
   const episodeContainer = document.getElementById("episode-list");
+  episodeContainer.innerHTML = "";
 
   episodeList.forEach((e) => {
     const episode = document.createElement("div");
@@ -30,5 +36,30 @@ function makePageForEpisodes(episodeList) {
     episodeContainer.appendChild(episode);
   });
 }
+
+
+function onSearchKeyUp(event){
+ const searchTerm = event.target.value.toLowerCase();
+ const allEpisodes = getAllEpisodes();
+
+ const filteredEpisodes = allEpisodes.filter((e) => {  
+   const episodeName = e.name.toLowerCase();
+   const episodeSummary = e.summary.toLowerCase();
+
+  return episodeName.includes(searchTerm) || episodeSummary.includes(searchTerm);
+ });
+
+ const filteredCount = filteredEpisodes.length;
+ const allCount = allEpisodes.length;
+
+ const countString = `Displaying ${filteredCount} episodes from ${allCount}`;
+
+searchCount.innerText = countString;
+
+ makePageForEpisodes(filteredEpisodes);
+}
+
+
+
 
 window.onload = setup;
