@@ -13,14 +13,11 @@
 
 body {
   margin: 0;
-}
-
-body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
+   border: 0;
 }
 
-.main,
 .footer_wrapper,
 .header_wrapper {
   padding: 20px;
@@ -31,6 +28,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+   border: 0px;
 }
 
 #episode-list{
@@ -63,17 +61,28 @@ img {
   padding-left: 80px;
 }
 
-#search-box {
+.box {
   width:30%;
   border: 1px solid rgb(215, 215, 215);
-  padding: 10px 15px;
+  padding: 10px 15px 5px;
   color: var(--grey-graffit);
-  font-size: 1.2rem;
- }
+  font-size: 1rem;
+}
 
- #search-count {
-   padding: 15px;
- }
+ .box-search {
+  width:27.5%;
+  border: 1px solid rgb(215, 215, 215);
+  padding: 10px 15px 5px;
+  color: var(--grey-graffit);
+  font-size: 1rem;
+}
+
+.label {
+   padding: 15px 0px 10px;
+   font-size: 1.2rem;
+   color: var(--grey-mid);
+   margin-top: 15px;
+}
 
 
 
