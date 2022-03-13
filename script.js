@@ -1,22 +1,45 @@
 const searchBox = document.getElementById("search-box");
 const searchCount = document.getElementById("search-count");
 const selectMenu = document.getElementById("select-input");
+const showSelect = document.getElementById("select-show");
 
 let currentEpisodes = [];
 
 function setup() {
-  
-  sendRequest(82).then((data) => {
-    currentEpisodes = data;
-    makePageForEpisodes(currentEpisodes);
-    makeSelectMenuForEpisodes(currentEpisodes);
-  });
+  const allShows = getAllShows();
+  makeSelectMenuForShows(allShows);
 
   searchBox.addEventListener("keyup", onSearchKeyUp);
   selectMenu.addEventListener("change", onChange);
+  showSelect.addEventListener("change", onChangeShow);
+}
+
+function makeSelectMenuForShows(shows){
+  shows.sort((showA, showB) => {
+    const {name: nameA} = showA;
+    const {name: nameB} = showB;
+
+    if(nameA.toLowerCase() < nameB.toLowerCase()){
+      return -1;
+    }else if (nameA.toLowerCase() > nameB.toLowerCase()){
+      return 1;
+    }else{
+      return 0;
+    }
+  });
+  
+    shows.forEach((show) => {
+      const listOption = document.createElement("option");
+      listOption.innerText = show.name;
+      listOption.value = show.id;
+      showSelect.appendChild(listOption);
+      
+    });
+
 }
 
 function makeSelectMenuForEpisodes(episodeList) {
+  selectMenu.innerHTML = "";
   const showAll = document.createElement("option");
   showAll.innerText = "All episodes";
   showAll.value = "SHOW_ALL";
@@ -103,6 +126,17 @@ function onChange(event) {
     makePageForEpisodes(filteredEpisodes);
   }
 }
+
+function onChangeShow(event){
+  const showId = event.target.value;
+   sendRequest(showId).then((data) => {
+     currentEpisodes = data;
+     makePageForEpisodes(currentEpisodes);
+     makeSelectMenuForEpisodes(currentEpisodes);
+   });
+
+}
+
 
 function sendRequest(showId) {
   const urlForTheRequest = `https://api.tvmaze.com/shows/${showId}/episodes`; 

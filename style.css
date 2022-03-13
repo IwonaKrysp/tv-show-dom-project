@@ -104,6 +104,11 @@ img {
   background-color: var(--grey-light);
 }
 
+.heading {
+  text-align: center;
+  color: var(--grey-dark);
+}
+
 .copyright {
   text-align: center;
   color: var(--grey-dark);
