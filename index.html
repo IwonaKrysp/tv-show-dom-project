@@ -3,19 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Iwona (IwonaKrysp)</title>
+     <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,300"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
     <div id="root">
+
+    <div class = "header_wrapper">
+        <h1 class = "heading">Tv Project</h1>
+    </div>
+    
+
+    <div class = "nav-wrapper">
+
+        <div class ="label">Select show</div>
+        <select class = "box" id = "select-show">All shows</select>
+        
+        <div class ="label">Select episode</div>
+        <select class = "box" id = "select-input">All options</select>
+
+        <div class ="label" id = "search-count"> Search for episode</div>
+        <input class = "box-search" id = "search-box" type="text" placeholder ="search..." />
+    </div>
+
+        <div id = "episode-list"></div>
+
+        <div class = "footer_wrapper">
+        <div class = "copyright">All content from TVMaze.com</div>
+    </div>
     </div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
-    <!-- Loads YOUR javascript code -->
+    <!-- Loads a provided function called getAllShows() which returns all shows -->
+    <script src="shows.js"></script>
+
+    <!-- Loads javascript code -->
     <script src="script.js"></script>
   </body>
 </html>
